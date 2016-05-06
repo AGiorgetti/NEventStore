@@ -110,7 +110,7 @@ function Update-AssemblyInformationalVersion
 	$tmpFile = $assemblyInfoFilePath + ".tmp"
 
 	Get-Content $assemblyInfoFilePath |
-		%{$_ -replace 'AssemblyInformationalVersion\("[0-9]+(\.([0-9]+|\*)){1,4}"\)', $newFileVersion }  | Out-File -Encoding UTF8 $tmpFile
+		%{$_ -replace 'AssemblyInformationalVersion\("[0-9]+(\.([^.]+|\*)){1,4}"\)', $newFileVersion }  | Out-File -Encoding UTF8 $tmpFile
 
 	Move-Item $tmpFile $assemblyInfoFilePath -force
 }
